@@ -1,16 +1,93 @@
-    {% load static %}
+{% load static %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
-    <ul class="list">
-    {% for user in users %}
-        <a href="/ad{{user.id}}">
-            <li class="list-item">
-                <div class="list-item_content1">
-                    <img src="./../../../{{ user.user.photo }}" class="list-item_content1-photo">
-                    <div class="list-item_content1-text">{{user.user.full_name}}</div>
-                </div>
-                <div class="list-item_content2">{{user.text}}</div>
+<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+<header class="header-top">
+    <div class="header-profile">
+        <div class="header-profile-name">
+            <a href="/" class="header-profile-name_link">Корсунский Георгий</a>
+        </div>
+    </div>
+    <div class="profile-fields_container">
+        <ul class="profile-fields">
+            <li class="profile-fields-item">
+                <a href="/" class="profile-fields-item_link">Отзывы</a>
             </li>
-        </a>
-    {% endfor %}
-    </ul>
+            <li class="profile-fields-item">
+                <a href="/" class="profile-fields-item_link">Рейтинг: {{users.rating}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="settings">
+        <a href="/" class="settings_link">Настройки &#9881;</a>
+    </div>
+</header>
+<header class="header-bottom">
+    <div class="header-logo_container">
+        <h1 class="header-logo">Some Logo</h1>
+    </div>
+    <div class="help-fields_container">
+         <ul class="help-fields">
+            <li class="help-fields-item">
+                <a href="/" class="help-fields-item_link">О нас</a>
+            </li>
+            <li class="help-fields-item">
+                <a href="/" class="help-fields-item_link">Помощь</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<main>
+    <div class="main-content-filters_container">
+        <div class="main-content-filters">
+            <select class="filter_category">
+                <option value="Python">Категории</option>
+                <option value="Python">Python</option>
+                <option value="Web">Web</option>
+            </select>
+                        <select class="filter_category">
+                <option value="Python">Категории</option>
+                <option value="Python">Python</option>
+                <option value="Web">Web</option>
+            </select>
+                        <select class="filter_category">
+                <option value="Python">Категории</option>
+                <option value="Python">Python</option>
+                <option value="Web">Web</option>
+            </select>
+                        <select class="filter_category">
+                <option value="Python">Категории</option>
+                <option value="Python">Python</option>
+                <option value="Web">Web</option>
+            </select>
+                        <select class="filter_category">
+                <option value="Python">Категории</option>
+                <option value="Python">Python</option>
+                <option value="Web">Web</option>
+            </select>
+                        <select class="filter_category">
+                <option value="Python">Категории</option>
+                <option value="Python">Python</option>
+                <option value="Web">Web</option>
+            </select>
+                        <select class="filter_category">
+                <option value="Python">Категории</option>
+                <option value="Python">Python</option>
+                <option value="Web">Web</option>
+            </select>
+        </div>
+    </div>
+    <div class="main-content">
+        {% for user in users %}
+            <div class="adv-item">
+                <div class="adv-name"><h1>Ad-Name</h1></div>
+                    <div class="adv-content">
+                        <p>
+                        vhvlhgkhihhkhkhhjhbkjhggjgjkgjygjygghgygyughg
+                        hggjgyguhihihihihihvgccycyyyfyyyfyfyfyfyfyyfg
+                        </p>
+                    </div>
+                    <div class="publication_date">29.10.2020</div>
+            </div>
+        {% endfor %}
+    </div>
+</main>
