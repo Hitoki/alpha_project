@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'music'
 ]
 
 MIDDLEWARE = [
@@ -98,3 +99,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
+SECRET_KEY = 'j*lw7688$bg$bcb)2zl2=1eew3=#@f#kfm3(8^tt2e5%w2!@t('
+
+try:
+    from local import *
+except ImportError:
+    pass
