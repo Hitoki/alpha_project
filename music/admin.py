@@ -1,3 +1,17 @@
 from django.contrib import admin
 
-# Register your models here.
+from music.models import Instrument, Epoch
+
+
+class InstrumentAdmin(admin.ModelAdmin):
+    ...
+
+
+admin.site.register(Instrument, InstrumentAdmin)
+
+
+class EpochAdmin(admin.ModelAdmin):
+    ...
+
+
+admin.site.register(Epoch, EpochAdmin)

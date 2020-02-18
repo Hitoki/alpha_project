@@ -1,0 +1,13 @@
+{% extends 'music/base.html' %}
+
+{% block content %}
+    {% for instrument in instrument_list %}
+        <div class="post">
+            <div class="date">
+                {{ instrument.epoch.date }}
+            </div>
+            <h2><a href="">{{ instrument.name }}</a></h2>
+            <span>{{ instrument.color }}</span>
+        </div>
+    {% endfor %}
+{% endblock %}

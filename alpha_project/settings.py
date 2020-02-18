@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'music'
 ]
 
@@ -32,6 +33,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'music.middleware.SimpleMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'alpha_project.urls'
@@ -99,9 +102,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
-SECRET_KEY = 'j*lw7688$bg$bcb)2zl2=1eew3=#@f#kfm3(8^tt2e5%w2!@t('
 
 try:
-    from local import *
+    from .local import *
 except ImportError:
     pass
