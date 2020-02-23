@@ -1,17 +1,21 @@
 from django.contrib import admin
 
-from music.models import Instrument, Epoch
+from music.models import Instrument, Epoch, Musician
 
 
 class InstrumentAdmin(admin.ModelAdmin):
     ...
 
 
-admin.site.register(Instrument, InstrumentAdmin)
-
-
 class EpochAdmin(admin.ModelAdmin):
     ...
 
 
+class MusicianAdmin(admin.ModelAdmin):
+    ...
+
+
 admin.site.register(Epoch, EpochAdmin)
+admin.site.register(Instrument, InstrumentAdmin)
+admin.site.register(Musician, MusicianAdmin)
+

@@ -1,15 +1,13 @@
 {% extends 'music/index.html' %}
 
 {% block content %}
-  {% for instrument in instrument_list %}
 
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">{{ instrument.name }}</h4>
         <p class="card-text"> Color: {{ instrument.color }}</p>
-        <a href="{% url 'instruments-detail' instrument.pk %}" class="card-link">More info</a>
+        <p class="card-text"> Range: {{ instrument.get_range_display }}</p>
       </div>
     </div>
 
-  {% endfor %}
 {% endblock %}

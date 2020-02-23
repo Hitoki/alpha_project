@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 
@@ -20,13 +22,30 @@ class Instrument(models.Model):
     range = models.CharField(max_length=3, choices=RANGE_CHOICES, default=TENOR)
     epoch = models.ForeignKey("Epoch", on_delete=models.SET_NULL, blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Epoch(models.Model):
     name = models.CharField(max_length=128)
-    date = models.DateTimeField()
+    start_date = models.DateTimeField(default=datetime.now)
+    end_date = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Musician(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
     instrument = models.ManyToManyField("Instrument")
+    practising_hours = models.BigIntegerField(default=0)
+    alive = models.BooleanField(default=True)
+    bio = models.TextField()
+
+    @property
+    def fullname(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def __str__(self):
+        return self.fullname
