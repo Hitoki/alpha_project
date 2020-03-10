@@ -3,6 +3,10 @@ from datetime import datetime
 from django.db import models
 
 
+class InstrumentManager(models.Manager):
+    def get_queryset(self):
+        return self
+
 class Instrument(models.Model):
     SOPRANO = "SOP"
     ALTO = "ALT"
@@ -24,6 +28,10 @@ class Instrument(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def get_color_name(self):
+        return f"{self.color} {self.name}"
 
 
 class Epoch(models.Model):

@@ -1,6 +1,11 @@
-from django.views.generic import ListView, DetailView, TemplateView
+from django.db import transaction
+from django.db.models import Count, Q
+from django import forms
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic import ListView, DetailView, TemplateView, FormView
 
-from music.models import Instrument, Musician
+from music.models import Instrument, Musician, Epoch
 
 
 class MusicTemplateView(TemplateView):
@@ -17,11 +22,28 @@ class InstrumentListView(ListView):
     def get_queryset(self):
         qs = super().get_queryset()
         qs.order_by('color')
-        return qs.filter(color='Brown')
+        qs.annotate(count=Count('musician'))
+        qs.prefetch_related('musician')
+        return qs.filter(color='Brown').filter(color__contains='B')
 
 
-class InstrumentDetailView(DetailView):
+class InstrumentDetailView(DetailView, FormView):
     model = Instrument
+
+    def test_func(self, x):
+        return "Test value"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["count"] = self.object.musician_set.count()
+        context["function"] = self.test_func
+        context["test_list"] = [1,2,3]
+        context["test_dict"] = {"a": 1, "b": 2}
+        context["notsafe"] = "<%&&*$@^#\n>"
+        return context
+
+    # def default(self, x):
+    #     return x if x else "Default"
 
 
 class MusicianListView(ListView):

@@ -7,6 +7,11 @@
       <div class="card-body">
         <h4 class="card-title">{{ instrument.name }}</h4>
         <p class="card-text"> Color: {{ instrument.color }}</p>
+        <p class="card-text"> Colour: {{ instrument.colour }}</p>
+
+        <p class="card-text"> Count: {{ instrument.count }}</p>
+{#        <p class="card-text"> Count: {{ instrument.musician_set.all }}</p>#}
+
         <a href="{% url 'instruments-detail' instrument.pk %}" class="card-link">More info</a>
       </div>
     </div>

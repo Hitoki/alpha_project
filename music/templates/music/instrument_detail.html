@@ -1,13 +1,49 @@
 {% extends 'music/index.html' %}
 
+{% load music_tag %}
+{% load humanize %}
+
 {% block content %}
 
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">{{ instrument.name }}</h4>
+        <h4 class="card-title">{{ instrument.name|lower|upper|safe }}</h4>
         <p class="card-text"> Color: {{ instrument.color }}</p>
+        <p class="card-text"> Count: {{ count|apnumber }}</p>
         <p class="card-text"> Range: {{ instrument.get_range_display }}</p>
+        <p class="card-text"> Function:
+          {% if function %}
+              {{ function }}
+          {% else %}
+              ---
+          {% endif %}
+        </p>
+
+        <p class="card-text"> Test list:  {{ test_list.0 }}</p>
+        {% for k in test_list %}
+          {{ k }}
+        {% endfor %}
+        <p class="card-text"> Test dict:  {{ test_dict }}</p>
+        {% for k, v in test_dict.items %}
+          {{ k }} {{ v }}
+        {% endfor %}
+
+        {% if test_list %}
+              Number of athletes: {{ test_list|length }}
+          {% elif test_dict %}
+              Athletes should be out of the locker room soon!
+          {% else %}
+              No athletes
+          {% endif %}
+
+        <p class="card-text"> ColorName:  {{ instrument.get_color_name }}</p>
+
+        <p class="card-text"> NotSafe:  {{ notsafe }}</p>
+
       </div>
     </div>
 
 {% endblock %}
+
+
+
