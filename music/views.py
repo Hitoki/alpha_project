@@ -27,7 +27,13 @@ class InstrumentListView(ListView):
         return qs.filter(color='Brown').filter(color__contains='B')
 
 
-class InstrumentDetailView(DetailView, FormView):
+class InstrumentForm(forms.ModelForm):
+    class Meta:
+        model = Instrument
+        fields = ['name', 'color', 'range']
+
+
+class InstrumentDetailView(DetailView):
     model = Instrument
 
     def test_func(self, x):
@@ -41,6 +47,13 @@ class InstrumentDetailView(DetailView, FormView):
         context["test_dict"] = {"a": 1, "b": 2}
         context["notsafe"] = "<%&&*$@^#\n>"
         return context
+
+    def post(self, request, pk, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
     # def default(self, x):
     #     return x if x else "Default"

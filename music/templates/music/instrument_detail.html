@@ -43,6 +43,18 @@
       </div>
     </div>
 
+    <form action="." method="post">
+        {% csrf_token %}
+        <label for="name" class="">Name: </label>
+        <input id="name" type="password" name="name" maxlength="256" value="{{ name }}">
+        <input type="submit" value="OK">
+    </form>
+
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="OK">
+    </form>
 {% endblock %}
 
 
