@@ -1,15 +1,26 @@
-class SimpleMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
-        # One-time configuration and initialization.
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.utils.deprecation import MiddlewareMixin
 
-    def __call__(self, request):
-        # Code to be executed for each request before
-        # the view (and later middleware) are called.
-        print("Before request")
-        response = self.get_response(request)
-        print('response: ', response)
-        # Code to be executed for each request/response after
-        # the view is called.
+from hmw.lesson8.core import User
 
+
+class SimpleMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        request.TEST = True
+
+    def process_response(self, request, response):
         return response
+
+    # def process_exception(self, request, exception):
+    #     return redirect(reverse('instruments-list'))
+
+    def process_template_response(self, request, response):
+        response.context_data['TEST'] = True
+        return response
+
+
+def show_test(request):
+    if not request.user.is_anonymous and request.user.is_superuser:
+        return {'TEST_2': True}
+    return {'TEST_2': False}
