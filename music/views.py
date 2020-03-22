@@ -1,9 +1,10 @@
 from django.db import transaction
 from django.db.models import Count, Q
 from django import forms
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse, FileResponse
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, TemplateView, FormView
+from django.views import View
+from django.views.generic import ListView, DetailView, TemplateView, FormView, CreateView
 
 from music.models import Instrument, Musician, Epoch
 
@@ -65,3 +66,41 @@ class MusicianListView(ListView):
 
 class MusicianDetailView(DetailView):
     model = Musician
+
+
+TEST_JSON_ORIGIN = {
+    "user": 1,
+    "count": "12k",
+    "test_list": [1, 2]
+}
+
+
+TEST_JSON = """{
+    "user": 1,
+    "count": "12k",
+    "test_list": [1, 2]
+}
+"""
+
+TEST_ERROR_JSON = """{
+    "error_code": 418,
+    "message": "Wrong user"
+}
+"""
+
+
+class MusicAPIView(View):
+
+    def get(self, request, *args, **kwargs):
+        # response = HttpResponse(TEST_JSON, content_type='application/vnd.ms-excel')
+        # return response
+        # response = FileResponse(open('/home/vitaliy/PycharmProjects/Lessons/app/alpha_project/music/urls.py', 'rb'))
+        # response['Content-Disposition'] = 'attachment; filename="urls.py"'
+        # return response
+        # instruments = Instrument.objects.all().values_list('name', 'color', 'range', 'epoch')
+        # instruments_json = {
+        #     "name": instruments[0][0],
+        #     "color": instruments[0][1],
+        # }
+        # return HttpResponse(str(instruments_json), status=200)
+        return JsonResponse(TEST_JSON_ORIGIN, content_type='application/vnd.ms-excel')

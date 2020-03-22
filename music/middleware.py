@@ -2,8 +2,6 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.deprecation import MiddlewareMixin
 
-from hmw.lesson8.core import User
-
 
 class SimpleMiddleware(MiddlewareMixin):
     def process_request(self, request):
@@ -16,7 +14,6 @@ class SimpleMiddleware(MiddlewareMixin):
     #     return redirect(reverse('instruments-list'))
 
     def process_template_response(self, request, response):
-        response.context_data['TEST'] = True
         return response
 
 

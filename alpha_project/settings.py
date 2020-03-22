@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'debug_toolbar',
+    'rest_framework',
+    'graphene_django',
     'music'
 ]
 
@@ -111,7 +113,12 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+GRAPHENE = {
+    'SCHEMA': 'schema.schema'
+}
+
 try:
     from .local import *
 except ImportError:
     pass
+
