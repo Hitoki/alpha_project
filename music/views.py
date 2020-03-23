@@ -1,3 +1,5 @@
+from time import sleep
+
 from django.db import transaction
 from django.db.models import Count, Q
 from django import forms
@@ -103,4 +105,9 @@ class MusicAPIView(View):
         #     "color": instruments[0][1],
         # }
         # return HttpResponse(str(instruments_json), status=200)
-        return JsonResponse(TEST_JSON_ORIGIN, content_type='application/vnd.ms-excel')
+        sleep(10)
+        return JsonResponse(TEST_JSON_ORIGIN)
+
+
+class TestMarkListView(TemplateView):
+    template_name = 'music/test_mark.html'
