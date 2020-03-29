@@ -22,7 +22,7 @@ class InstrumentFactory(factory.Factory):
     @factory.post_generation
     def create_after(self, create, extracted, **kwargs):
         epoch = EpochFactory()
-        print('epoch', epoch)
+
 
 class UserFactory(factory.Factory):
     class Meta:
