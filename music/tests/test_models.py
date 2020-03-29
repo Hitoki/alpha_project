@@ -10,7 +10,7 @@ class InstrumentTestCase(TestCase):
     def test_get_color_name(self):
         self.assertEqual(self.instrument.get_color_name, f"color 0 name 0")
 
-    def test_get_color_name_with_none(self):
+    def test_get_color_name_with_color_none(self):
         self.instrument2 = InstrumentFactory(name="Test", color='')
 
         self.assertEqual(self.instrument2.get_color_name, f" Test")

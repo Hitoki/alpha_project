@@ -1,4 +1,12 @@
+"""
+Music core models file:
+- Instrument
+- Epoch
+- Musician
+"""
+
 from datetime import datetime
+from django.utils.translation import gettext as _
 
 from django.db import models
 
@@ -22,7 +30,7 @@ class Instrument(models.Model):
         (BASS, "Bass")
     )
 
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, help_text=_("Instrument title|name"))
     color = models.CharField(max_length=64, default="", blank=True)
     range = models.CharField(max_length=3, choices=RANGE_CHOICES, default=TENOR)
     epoch = models.ForeignKey("Epoch", on_delete=models.SET_NULL, blank=True, null=True)
@@ -32,6 +40,11 @@ class Instrument(models.Model):
 
     @property
     def get_color_name(self):
+        _("""
+        Property for displaying color and name attribute
+
+        return: self.color self.name
+        """)
         return f"{self.color} {self.name}"
 
 

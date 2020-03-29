@@ -51,7 +51,7 @@ class InstrumentDetailView(DetailView):
         context["notsafe"] = "<%&&*$@^#\n>"
         return context
 
-    def post(self, request, pk, *args, **kwargs):
+    def post(self, request, pk: int, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
             return self.form_valid(form)
@@ -105,7 +105,6 @@ class MusicAPIView(View):
         #     "color": instruments[0][1],
         # }
         # return HttpResponse(str(instruments_json), status=200)
-        sleep(10)
         return JsonResponse(TEST_JSON_ORIGIN)
 
 
