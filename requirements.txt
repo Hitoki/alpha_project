@@ -5,3 +5,5 @@ markdown==3.2.1
 django-filter==2.2.0
 graphene-django==2.9
 factory-boy==2.12
+psycopg2
+gunicorn
